@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar</title>
+    <link rel="stylesheet" href="css/editarAvaliacao.css" />
+    <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+
+<body onload="validarSessao()">
+    <nav class="sidebar">
+        <a href="#" class="logo">Rocket League</a>
+
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Bem-Vindo <span id="b_usuario">usuário</span></div>
+
+                <li class="item">
+                    <a href="avaliarJogador.html">Avaliar Jogador</a>
+                </li>
+                <li class="item">
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="item">
+                    <a href="avaliarTime.html">Avaliar Time</a>
+                </li>
+                <li class="item">
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <li class="item">
+                    <a onclick="limparSessao()" href="index.html">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar">
+        <i class="fa-solid fa-bars" id="sidebar-close"></i>
+    </nav>
+
+    <main class="main">
+        <h1>Editar avaliação de Jogador</h1>
+
+        <div class="T50 Contato" id="Contato">
+            <form>
+                <textarea placeholder="Digite sua avaliação"></textarea>
+                <input type="submit" onclick="editar()" value="Enviar">
+            </form>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
+
+<script>
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarClose = document.querySelector("#sidebar-close");
+
+    sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+    function listarInfosDeUm() {
+        console.log("Criar função de trazer informações de post escolhido");
+    }
+
+    function editar() {
+        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/mural.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+</script>

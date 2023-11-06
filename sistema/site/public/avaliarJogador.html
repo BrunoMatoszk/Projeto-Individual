@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliação de Jogador</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboards.css">
+    <script src="js/alerta.js"></script>
+    <script src="js/sessao.js"></script>
+    <link rel="stylesheet" href="css/avaliarJogador.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+
+<body onload="atualizarFeed()" onload="validarSessao()">
+    <nav class="sidebar">
+        <a href="#" class="logo">Rocket League</a>
+
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Bem-Vindo <span id="b_usuario">usuário</span></div>
+
+                <li class="item">
+                    <a href="avaliarJogador.html">Avaliar Jogador</a>
+                </li>
+                <li class="item">
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="item">
+                    <a href="votarJogador.html">Votar Jogador</a>
+                </li>
+                <li class="item">
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <li class="item">
+                    <a onclick="limparSessao()" href="index.html">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar">
+        <i class="fa-solid fa-bars" id="sidebar-close"></i>
+    </nav>
+
+    <main class="main">
+        <h1>Avalie a Temporada do seu Jogador</h1>
+        <p>
+            Nessa lista irei trazer os melhores jogadores da temporada 22-23. O critério é: titulos, aparições em
+            torneios, colocações em campeonatos e prêmios individuais.
+        </p>
+
+        <div class="jogadores">
+            <div id="jogador1" class="jogador1">
+                <button class="btn-votar" onclick="atleta1()">
+                    <img src="assets/imgs/zen.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador2" class="jogador1">
+                <button class="btn-votar" onclick="atleta2()">
+                    <img src="assets/imgs/acronik.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador3" class="jogador1">
+                <button class="btn-votar" onclick="atleta3()">
+                    <img src="assets/imgs/alpha.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador4" class="jogador1">
+                <button class="btn-votar" onclick="atleta4()">
+                    <img src="assets/imgs/firstkiller.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador5" class="jogador1">
+                <button class="btn-votar" onclick="atleta5()">
+                    <img src="assets/imgs/vatira.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador6" class="jogador1">
+                <button class="btn-votar" onclick="atleta6()">
+                    <img src="assets/imgs/radosin.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador7" class="jogador1">
+                <button class="btn-votar" onclick="atleta7()">
+                    <img src="assets/imgs/jack.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador8" class="jogador1">
+                <button class="btn-votar" onclick="atleta8()">
+                    <img src="assets/imgs/moonkey-moon.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador9" class="jogador1">
+                <button class="btn-votar" onclick="atleta9()">
+                    <img src="assets/imgs/rise.jpg" alt="">
+                </button>
+            </div>
+            <div id="jogador10" class="jogador1">
+                <button class="btn-votar" onclick="atleta10()">
+                    <img src="assets/imgs/rw9.jpg" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div class="T50 Contato" id="Contato">
+            <form id="form_postagem" method="post" onsubmit="return publicar()">
+                <textarea id="textarea_descricao" placeholder="Digite sua avaliação"></textarea>
+                <button class="btn-avaliar">Enviar</button>
+            </form>
+        </div>
+
+        <h1>Mural de Avaliações</h1>
+        <div class="div-results">
+            <div id="feed_container" class="feed-container">
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
+
+<script>
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarClose = document.querySelector("#sidebar-close");
+
+    sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
+    var jogadorAvaliado;
+
+    function atleta1() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 1;
+    }
+
+    function atleta2() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 2;
+    }
+
+    function atleta3() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 3;
+    }
+
+    function atleta4() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 4;
+    }
+
+    function atleta4() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 5;
+    }
+
+    function atleta6() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 6;
+    }
+
+    function atleta7() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 7;
+    }
+
+    function atleta8() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 8;
+    }
+
+    function atleta9() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 9;
+    }
+
+    function atleta10() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
+        jogadorAvaliado = 10;
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            descricao: textarea_descricao.value,
+            idJogador: jogadorAvaliado
+        }
+
+        fetch(`/avaliacao/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                setInterval('', 5000)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'POST',
+                    text: `Post realizado com sucesso pelo usuario de ID: ${idUsuario}!`,
+                    confirmButtonColor: '#1e26fd'
+                }).then(() => {
+                    window.location = "/avaliarJogador.html";
+                })
+                // window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                // window.location = "/avaliarJogador.html";
+                // // limparFormulario();
+                // // finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else if (resposta.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Campos vazios ou você não escolheu um jogador para avaliar',
+                    confirmButtonColor: '#1e26fd'
+                })
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function editar(idAvaliacao) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAvaliacao;
+        console.log("cliquei em editar - " + idAvaliacao);
+        // window.alert("Você será redirecionado à página de edição da avaliação de id número: " + idAvaliacao);
+        Swal.fire({
+            icon: 'info',
+            title: 'EDITAR',
+            text: 'Você será redirecionado à página de edição da avaliação',
+            confirmButtonColor: '#1e26fd'
+        }).then(() => {
+            window.location = "/editarAvaliacaoJogador.html"
+        })
+
+
+    }
+
+    function deletar(idAvaliacao) {
+        console.log("Criar função de apagar post escolhido - ID" + idAvaliacao);
+        fetch(`/avaliacao/deletar/${idAvaliacao}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                // window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bom trabalho!',
+                    text: 'Publicação deletada com sucesso',
+                    confirmButtonColor: '#1e26fd',
+                    timer: 4500
+                }).then(() => {
+                    window.location = "/avaliarJogador.html"
+                })
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar deletar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/avaliacao/listar`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var spanJogador = document.createElement("span");
+                        var spanDescricao = document.createElement("span");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.idUsuario + "</b>";
+                        spanNome.innerHTML = "Nome: <b>" + publicacao.nome + "</b>";
+                        spanJogador.innerHTML = "Jogador Avaliado: <b>" + publicacao.NomeJogador + "</b>";
+                        spanDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
+
+                        divPublicacao.className = "publicacao";
+                        spanID.className = "publicacao-idUsuario";
+                        spanNome.className = "publicacao-nome";
+                        spanJogador.className = "publicacao-nomeJogador";
+                        spanDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "div-buttons"
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.idUsuario = "btnEditar" + publicacao.idAvaliacao;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.idUsuario = "btnDeletar" + publicacao.idAvaliacao;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanJogador);
+                        divPublicacao.appendChild(spanDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    // function limparFormulario() {
+    //     document.getElementById("form_postagem").reset();
+    // }
+</script>

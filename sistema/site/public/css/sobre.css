@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #212229, #15161E);
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.header {
+    height: 74px;
+    background-color: #15161E;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+.navbar {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: white;
+}
+
+.titulo {
+    color: white;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.background-color-sobre img {
+    width: 430px;
+    height: auto;
+}
+
+.text-sobre {
+    width: 550px;
+    padding-top: 29px;
+}
+
+.main-sobre {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 1130px;
+    margin: 0 auto;
+}
+
+.text-sobre h2 {
+    color: white;
+    font-size: 75px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.text-sobre h5 {
+    color: white;
+    letter-spacing: 2px;
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.text-sobre p {
+    color: #fcfc;
+    letter-spacing: 1px;
+    line-height: 28px;
+    font-size: 18px;
+    margin-bottom: 45px;
+}

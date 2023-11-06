@@ -1,0 +1,54 @@
+Top10 jogadores 2023
+Top10 times 2023 
+na pagina do sistema, voce avaliaria seu jogador favorito
+teria uma dashboard de "jogador mais votado" "time mais votado"
+Quiz na pagina do sistema sobre os jogadores e os times.
+
+critério top10 - titulos, aparições em torneios, colocações em torneios, premios individuais.
+
+lista jogadores: Zen, Vatira, Moonkey Moon, Rise, RW9, Alpha54, Radosin, acronik, apparentlyJack, firstkiller
+
+
+fall major
+winter major
+spring major
+worlds
+gamers8
+
+lista times: vitality, bds, karmine, team liquid, geng, ruleone, complexity, faze, spacestation, g2 
+
+fall major
+premios individuais
+offensive mvp vatira
+defensive mvp kv1
+major mvp apparentlyJack
+top3: geng, moist, team secret
+
+winter major
+premios individuais
+offensive mvp vatira
+defensive mvp mist
+major mvp vatira
+top3: karmine, faze, complexity
+
+spring major
+premios individuais
+offensive mvp zen
+defensive mvp rw9
+major mvp zen
+top3: vitality, bds, karmine
+
+worlds 
+offensive mvp lj
+defensive mvp vatira
+worlds mvp zen
+top3: vitality, bds, liquid
+
+gamers8
+top: version, ruleone, bds
+
+spring1 eu
+top3: vitality, liquid, bds
+
+sprint2 eu
+top3: 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dash.css" />
+    <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+
+<body onload="validarSessao()">
+    <nav class="sidebar">
+        <a href="#" class="logo">Rocket League</a>
+
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Bem-Vindo <span id="b_usuario">usuário</span></div>
+
+                <li class="item">
+                    <a href="avaliarJogador.html">Avaliar Jogador</a>
+                </li>
+                <li class="item">
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+
+                <li class="item">
+                    <a href="votarJogador.html">Votar Jogador</a>
+                </li>
+                <li class="item">
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <li class="item">
+                    <a onclick="limparSessao()" href="index.html">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar">
+        <i class="fa-solid fa-bars" id="sidebar-close"></i>
+    </nav>
+
+    <main class="main">
+        <h1>Avaliações por jogador e time</h1>
+    </main>
+
+</body>
+
+</html>
+
+<script>
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarClose = document.querySelector("#sidebar-close");
+
+    sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+</script>
