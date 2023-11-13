@@ -49,8 +49,8 @@
 
         <div class="T50 Contato" id="Contato">
             <form>
-                <textarea placeholder="Digite sua avaliação"></textarea>
-                <input type="submit" onclick="editar()" value="Enviar">
+                <textarea id="textarea_descricao" placeholder="Digite sua avaliação"></textarea>
+                <button class="btn-avaliar" onclick="editar()">Enviar</button>
             </form>
 
         </div>
@@ -66,12 +66,14 @@
 
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
     function listarInfosDeUm() {
         console.log("Criar função de trazer informações de post escolhido");
     }
 
     function editar() {
-        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        fetch(`/avaliacao/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -80,12 +82,24 @@
                 descricao: textarea_descricao.value
             })
         }).then(function (resposta) {
-
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                Swal.fire({
+                    icon: 'success',
+                    title: 'POST',
+                    text: `Post atualizado com sucesso pelo usuario de email: ${sessionStorage.getItem("EMAIL_USUARIO")}!`,
+                    confirmButtonColor: '#1e26fd'
+                }).then(() => {
+                    window.location = "/avaliarJogador.html"
+                })
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
+            } else if (resposta.status == 400) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Campos vazios',
+                    confirmButtonColor: '#1e26fd'
+                })
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }

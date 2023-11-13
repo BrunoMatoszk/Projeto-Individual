@@ -84,10 +84,10 @@ function cadastrarJogador(idUsuario, jogadorEscolhido) {
     return database.executar(instrucao);
 }
 
-function editar(novaDescricao, novoJogador, idAvaliacao) {
-    console.log("ACESSEI A AVALIACAO JOGADOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, novoJogador, idAvaliacao);
+function editar(novaDescricao, idAvaliacao) {
+    console.log("ACESSEI A AVALIACAO JOGADOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAvaliacao);
     var instrucao = `
-    UPDATE avaliacao SET descricao = '${novaDescricao}', fkPlayer = '${novoJogador}' WHERE idAvaliacao = ${idAvaliacao};
+    UPDATE avaliacao SET descricao = '${novaDescricao}' WHERE idAvaliacao = ${idAvaliacao};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

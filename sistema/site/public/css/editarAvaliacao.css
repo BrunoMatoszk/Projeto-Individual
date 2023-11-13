@@ -132,8 +132,7 @@
     resize: vertical;
 }
 
-.Contato input[type=submit] {
-
+.btn-avaliar {
     font-size: 15px;
     cursor: pointer;
     background: white;
@@ -145,6 +144,6 @@
     border: 1px solid black;
 }
 
-.Contato input:hover[type="submit"] {
+.btn-avaliar:hover {
     background-color: #ccc;
 }

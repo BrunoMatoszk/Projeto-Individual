@@ -405,6 +405,60 @@
             <img  src="assets/imgs/rw9.jpg" alt="">
         </button>`;
 
+        jogadorAvaliado = 4;
+    }
+
+    function atleta5() {
+        jogador1.innerHTML = `
+        <button class="btn-votar" onclick="atleta1()">
+            <img src="assets/imgs/zen.jpg" alt="">
+        </button>`;
+
+        jogador2.innerHTML = `
+        <button class="btn-votar" onclick="atleta2()">
+            <img src="assets/imgs/acronik.jpg" alt=""> 
+        </button>`;
+
+        jogador3.innerHTML = `
+        <button class="btn-votar" onclick="atleta3()">
+            <img src="assets/imgs/alpha.jpg" alt=""> 
+        </button>`;
+
+        jogador4.innerHTML = `
+        <button class="btn-votar" onclick="atleta4()">
+            <img src="assets/imgs/firstkiller.jpg" alt=""> 
+        </button>`;
+
+        jogador5.innerHTML = `
+        <button class="btn-votar" onclick="atleta5()">
+            <img src="assets/imgs/vatira.jpg" alt=""> 
+        </button>`;
+
+        jogador6.innerHTML = `
+        <button class="btn-votar" onclick="atleta6()">
+            <img src="assets/imgs/radosin.jpg" alt=""> 
+        </button>`;
+
+        jogador7.innerHTML = `
+        <button class="btn-votar" onclick="atleta7()">
+            <img  src="assets/imgs/jack.jpg" alt=""> 
+        </button>`;
+
+        jogador8.innerHTML = `
+        <button class="btn-votar" onclick="atleta8()">
+            <img src="assets/imgs/moonkey-moon.jpg" alt=""> 
+        </button>`;
+
+        jogador9.innerHTML = `
+        <button class="btn-votar" onclick="atleta9()">
+            <img  src="assets/imgs/rise.jpg" alt=""> 
+        </button>`;
+
+        jogador10.innerHTML = `
+        <button class="btn-votar" onclick="atleta10()">
+            <img  src="assets/imgs/rw9.jpg" alt="">
+        </button>`;
+
         jogadorAvaliado = 5;
     }
 
@@ -732,6 +786,7 @@
     }
 
     function editar(idAvaliacao) {
+        console.log(idAvaliacao);
         sessionStorage.ID_POSTAGEM_EDITANDO = idAvaliacao;
         console.log("cliquei em editar - " + idAvaliacao);
         // window.alert("Você será redirecionado à página de edição da avaliação de id número: " + idAvaliacao);
@@ -824,11 +879,11 @@
 
                         divButtons.className = "div-buttons"
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.idUsuario = "btnEditar" + publicacao.idAvaliacao;
+                        btnEditar.id = "btnEditar" + publicacao.idAvaliacao;
                         btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.idUsuario = "btnDeletar" + publicacao.idAvaliacao;
+                        btnDeletar.id = "btnDeletar" + publicacao.idAvaliacao;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
 
                         divPublicacao.appendChild(spanID);

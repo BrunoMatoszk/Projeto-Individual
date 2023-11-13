@@ -151,17 +151,14 @@ function cadastrarJogador(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var novoJogador = req.body.novoJogador;
     var idAvaliacao = req.params.idAvaliacao;
 
     if (novaDescricao == undefined) {
-        res.status(400).send("A descrição está vazia!");
+        res.status(400).send("A descrição está indefinida!");
     } else if (novaDescricao == "") {
-        res.status(400).send("A descrição está indefinido!");
-    } else if (novoJogador == undefined) {
-        res.status(400).send("O jogador está indefinido!");
+        res.status(400).send("A descrição está vazia!");
     } else {
-        avaliacaoModel.editar(novaDescricao, novoJogador, idAvaliacao)
+        avaliacaoModel.editar(novaDescricao, idAvaliacao)
             .then(
                 function (resultado) {
                     res.json(resultado);
