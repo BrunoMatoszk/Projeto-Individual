@@ -41,13 +41,13 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
-function personagem(req, res) {
+function jogador(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.personagem(idUsuario).then(function (resultado) {
+    medidaModel.jogador(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -63,6 +63,6 @@ function personagem(req, res) {
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    personagem
+    jogador
 
 }

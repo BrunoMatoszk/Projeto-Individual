@@ -33,3 +33,6 @@ function finalizarAguardar(texto) {
     }
 }
 
+// function limparFormulario() {
+//     document.getElementById("form_postagem").reset();
+// }

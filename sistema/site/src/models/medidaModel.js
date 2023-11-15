@@ -1,19 +1,21 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAvaliacao, limite_linhas) {
+function buscarUltimasMedidas(idUsuario, limite_linhas) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
-            group by fkEstrela order by fkEstrela desc;
+        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
+        join jogador ON fkPlayer = idJogador group by jogador.nome 
+        order by TotalJogador desc;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
-            group by fkEstrela order by fkEstrela desc;
+        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
+        join jogador ON fkPlayer = idJogador group by jogador.nome 
+        order by TotalJogador desc;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -24,20 +26,22 @@ function buscarUltimasMedidas(idAvaliacao, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAvaliacao) {
+function buscarMedidasEmTempoReal(idUsuario) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
-            group by fkEstrela order by fkEstrela desc;
+        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
+        join jogador ON fkPlayer = idJogador group by jogador.nome 
+        order by TotalJogador desc;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-            select fkEstrela as Estrela, count(fkEstrela) as TotalEstrela from avaliacao
-            group by fkEstrela order by fkEstrela desc;
+        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
+        join jogador ON fkPlayer = idJogador group by jogador.nome 
+        order by TotalJogador desc;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -48,22 +52,22 @@ function buscarMedidasEmTempoReal(idAvaliacao) {
     return database.executar(instrucaoSql);
 }
 
-function personagem(idUsuario) {
+function jogador(idUsuario) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-            select personagem.nome as NomePersonagem, count(fkPersonagem) as TotalVotos from usuario join personagem
-                on fkPersonagem = idPersonagem
-                    group by personagem.nome;
+        select jogador.nome as NomeJogador, count(fkJogador) as TotalVotos from usuario join jogador
+        on fkJogador = idJogador
+            group by jogador.nome order by TotalVotos desc;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-            select personagem.nome as NomePersonagem, count(fkPersonagem) as TotalVotos from usuario join personagem
-                on fkPersonagem = idPersonagem
-                    group by personagem.nome;
+        select jogador.nome as NomeJogador, count(fkJogador) as TotalVotos from usuario join jogador
+        on fkJogador = idJogador
+            group by jogador.nome order by TotalVotos desc;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -78,5 +82,5 @@ function personagem(idUsuario) {
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    personagem
+    jogador
 }

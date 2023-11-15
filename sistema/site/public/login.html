@@ -63,7 +63,6 @@
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif" />
                 </div>
-
                 <div id="div_erros_login"></div>
             </form>
 
@@ -96,6 +95,7 @@
             setInterval(sumirMensagem, 5000)
         }
 
+
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
@@ -123,7 +123,7 @@
                     // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "votarJogador.html";
+                        window.location = "/votarJogador.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -141,9 +141,10 @@
         }).catch(function (erro) {
             console.log(erro);
         })
-
         return false;
+
     }
+
 
     function sumirMensagem() {
         cardErro.style.display = "none"
