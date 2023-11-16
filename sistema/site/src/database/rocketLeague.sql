@@ -10,12 +10,17 @@ CREATE DATABASE rocketLeague;
 
 USE rocketLeague;
 
+create table jogador(
+idJogador int primary key auto_increment,
+nome varchar(45)
+);
+
 create table usuario(
 idUsuario int primary key auto_increment,
 nome varchar(15),
 sobrenome varchar(15),
 email varchar(30),
-senha varchar(10),
+senha varchar(50),
 fkJogador int, constraint fkJogador foreign key (fkJogador) references jogador(idJogador)
 );
 
@@ -36,10 +41,6 @@ fkUser int, constraint fkUser foreign key (fkUser) references usuario(idUsuario)
 constraint pkTripla primary key(idAvaliacao, fkUser, fkPlayer)
 );
 
-create table jogador(
-idJogador int primary key auto_increment,
-nome varchar(45)
-);
 
 insert into jogador values
 	(null, 'Zen'),

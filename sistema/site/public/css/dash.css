@@ -101,7 +101,6 @@
     z-index: 100;
     background: #e7f2fd;
     background-color: #212229;
-    height: 100vh;
 }
 
 .main h1 {
@@ -109,4 +108,11 @@
     font-size: 30px;
     text-align: center;
     padding-top: 7%;
+}
+
+.dashs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

@@ -147,6 +147,7 @@ form .button {
 .loading-div {
     width: 50px;
     display: none;
+    margin: auto;
 }
 
 .loading-div img {

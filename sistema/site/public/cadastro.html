@@ -106,48 +106,86 @@
 
       finalizarAguardar();
       return false;
+    } else if (emailVar.indexOf("@") < 0) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Digite um email válido)";
+
+      finalizarAguardar();
+      return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        sobrenomeServer: sobrenomeVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+    let senhaHex = '';
 
-        if (resposta.ok) {
-          cardErro.style.display = "block";
+    for (let i = 0; i < senhaVar.length; i++) {
+      let ascii = senhaVar.charCodeAt(i);
+      let hex = ascii.toString(16);
+      senhaHex += hex;
+    }
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
+    if (senhaVar != senhaVar.toLowerCase() && senhaVar != senhaVar.toUpperCase()) {
 
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+      if (senhaVar.length >= 8) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaHex,
+            sobrenomeServer: sobrenomeVar
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              cardErro.style.display = "block";
+
+              mensagem_erro.innerHTML =
+                "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+              setTimeout(() => {
+                window.location = "login.html";
+              }, "2000");
+
+              limparFormulario();
+              finalizarAguardar();
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+
+
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+          "(Digite uma senha com 8 dígitos)";
+
         finalizarAguardar();
-      });
+        return false;
+      }
+
+    } else {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Digite uma senha com letra maiúscula e minúscula)";
+
+      finalizarAguardar();
+      return false;
+    }
 
     return false;
   }

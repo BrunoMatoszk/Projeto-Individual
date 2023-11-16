@@ -99,6 +99,14 @@
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
+        let senhaHex = '';
+
+        for (let i = 0; i < senhaVar.length; i++) {
+            let ascii = senhaVar.charCodeAt(i);
+            let hex = ascii.toString(16);
+            senhaHex += hex;
+        }
+
         fetch("/usuarios/entrar", {
             method: "POST",
             headers: {
@@ -106,7 +114,7 @@
             },
             body: JSON.stringify({
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaHex
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")

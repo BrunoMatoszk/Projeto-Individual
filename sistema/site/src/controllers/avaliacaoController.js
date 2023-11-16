@@ -101,23 +101,20 @@ function publicar(req, res) {
         res.status(400).send("O id do jogador está indefinido!");
     } else {
         avaliacaoModel.listarPorUsuario(idUsuario).then((resultado) => {
-            if (resultado.length > 0) {
-                res.status(400).send("O usuário já fez uma avaliação"); //mexer
-            } else {
-                avaliacaoModel.publicar(idUsuario, idJogador, descricao)
-                    .then(
-                        function (resultado) {
-                            res.json(resultado);
-                        }
-                    )
-                    .catch(
-                        function (erro) {
-                            console.log(erro);
-                            console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                            res.status(500).json(erro.sqlMessage);
-                        }
-                    );
-            }
+            avaliacaoModel.publicar(idUsuario, idJogador, descricao)
+                .then(
+                    function (resultado) {
+                        res.json(resultado);
+                    }
+                )
+                .catch(
+                    function (erro) {
+                        console.log(erro);
+                        console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                        res.status(500).json(erro.sqlMessage);
+                    }
+                );
+
         })
 
     }

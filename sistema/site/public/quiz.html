@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rocket League | Quiz</title>
-    <link rel="stylesheet" href="css/dash.css" />
+    <link rel="stylesheet" href="css/quiz.css" />
+    <script src="js/sessao.js"></script>
     <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao()" onload="carregarQuestao()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -45,15 +46,177 @@
     </nav>
 
     <main class="main">
+        <h1>Quiz Rocket League</h1>
+        <div class="principal">
+            <div class="content">
+                <span class="spanQtd"></span>
+                <span class="question"></span>
+                <div class="answers"></div>
+            </div>
+            <div class="finish">
+                <span></span>
+                <button>Reiniciar</button>
+            </div>
+        </div>
     </main>
 
 </body>
 
 </html>
 
-<script>
+<script type="module">
     const sidebar = document.querySelector(".sidebar");
     const sidebarClose = document.querySelector("#sidebar-close");
 
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+    var listaQuestoes = [
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+        {
+            question: "aaaaaaa",
+            answers: [
+                { option: "a", correct: true },
+                { option: "b", correct: false },
+                { option: "c", correct: false }
+            ]
+        },
+    ]
+
+    window.onload = carregarQuestao();
+
+    const question = document.querySelector(".question");
+    const answers = document.querySelector(".answers");
+    const spanQtd = document.querySelector(".spanQtd");
+    const textFinish = document.querySelector(".finish span");
+    const content = document.querySelector(".content");
+    const contentFinish = document.querySelector(".finish");
+    const btnRestart = document.querySelector(".finish button");
+
+    let indice = 0;
+    let questoesCorretas = 0;
+
+    function carregarQuestao() {
+        spanQtd.innerHTML = `${indice + 1}/${listaQuestoes.length}`;
+        const item = listaQuestoes[indice];
+        answers.innerHTML = "";
+        question.innerHTML = item.question
+
+        item.answers.forEach((answer) => {
+            const div = document.createElement("div");
+
+            div.innerHTML = `
+            <button class="answer" data-correct="${answer.correct}">
+                ${answer.option}
+            </button>`
+
+            answers.appendChild(div);
+        })
+
+        document.querySelectorAll(".answer").forEach((item) => {
+            item.addEventListener("click", proximaQuestao);
+        })
+    }
+
+    function proximaQuestao(e) {
+        if (e.target.getAttribute("data-correct") === true) {
+            questoesCorretas++;
+        }
+
+        if (indice < listaQuestoes.length - 1) {
+            indice++;
+            carregarQuestao();
+        } else {
+            finalizar();
+        }
+    }
+
+    function finalizar() {
+        textFinish.innerHTML = `Você acertou ${questoesCorretas} de ${listaQuestoes.length}`;
+        content.style.display = "none";
+        contentFinish.style.display = "flex";
+    }
+
+    btnRestart.onclick = () => {
+        content.style.display = "flex";
+        contentFinish.style.display = "none";
+
+        indice = 0;
+        questoesCorretas = 0;
+        carregarQuestao();
+    }
+
+    carregarQuestao();
+
+
 </script>
