@@ -8,6 +8,7 @@
     <title>Rocket League | Quiz</title>
     <link rel="stylesheet" href="css/quiz.css" />
     <script src="js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -48,12 +49,12 @@
     <main class="main">
         <h1>Quiz Rocket League</h1>
         <div class="principal">
-            <div class="content">
-                <span class="spanQtd"></span>
-                <span class="question"></span>
-                <div class="answers"></div>
+            <div class="conteudo">
+                <span class="spnQtd"></span>
+                <span class="questao"></span>
+                <div class="respostas"></div>
             </div>
-            <div class="finish">
+            <div class="finalizar">
                 <span></span>
                 <button>Reiniciar</button>
             </div>
@@ -64,136 +65,73 @@
 
 </html>
 
-<script type="module">
+<script>
     const sidebar = document.querySelector(".sidebar");
     const sidebarClose = document.querySelector("#sidebar-close");
-
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
-    var listaQuestoes = [
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-        {
-            question: "aaaaaaa",
-            answers: [
-                { option: "a", correct: true },
-                { option: "b", correct: false },
-                { option: "c", correct: false }
-            ]
-        },
-    ]
+    var questao = document.querySelector(".questao");
+    var respostas = document.querySelector(".respostas");
+    var spnQtd = document.querySelector(".spnQtd");
+    var textoFinalizar = document.querySelector(".finalizar span");
+    var conteudo = document.querySelector(".conteudo");
+    var conteudoFinalizar = document.querySelector(".finalizar");
+    var btnRestart = document.querySelector(".finalizar button");
 
-    window.onload = carregarQuestao();
+    var questoes =
+        [
+            {
+                questao: "Quanto é 1 + 2?",
+                respostas: [
+                    { opcao: "3", correta: true },
+                    { opcao: "2", correta: false },
+                    { opcao: "4", correta: false },
+                ],
+            },
+            {
+                questao: "Quanto é 5 x 2?",
+                respostas: [
+                    { opcao: "9", correta: false },
+                    { opcao: "10", correta: true },
+                    { opcao: "11", correta: false },
+                ],
+            },
+            {
+                questao: "Quanto é 10 x 8?",
+                respostas: [
+                    { opcao: "800", correta: false },
+                    { opcao: "90", correta: false },
+                    { opcao: "80", correta: true },
+                ],
+            },
+            {
+                questao: "Quanto é 7 x 7?",
+                respostas: [
+                    { opcao: "70", correta: false },
+                    { opcao: "56", correta: false },
+                    { opcao: "49", correta: true },
+                ],
+            },
+        ];
 
-    const question = document.querySelector(".question");
-    const answers = document.querySelector(".answers");
-    const spanQtd = document.querySelector(".spanQtd");
-    const textFinish = document.querySelector(".finish span");
-    const content = document.querySelector(".content");
-    const contentFinish = document.querySelector(".finish");
-    const btnRestart = document.querySelector(".finish button");
+    var indice = 0;
+    var questoesCorretas = 0;
 
-    let indice = 0;
-    let questoesCorretas = 0;
+    btnRestart.onclick = () => {
+        conteudo.style.display = "flex";
+        conteudoFinalizar.style.display = "none";
 
-    function carregarQuestao() {
-        spanQtd.innerHTML = `${indice + 1}/${listaQuestoes.length}`;
-        const item = listaQuestoes[indice];
-        answers.innerHTML = "";
-        question.innerHTML = item.question
-
-        item.answers.forEach((answer) => {
-            const div = document.createElement("div");
-
-            div.innerHTML = `
-            <button class="answer" data-correct="${answer.correct}">
-                ${answer.option}
-            </button>`
-
-            answers.appendChild(div);
-        })
-
-        document.querySelectorAll(".answer").forEach((item) => {
-            item.addEventListener("click", proximaQuestao);
-        })
-    }
+        indice = 0;
+        questoesCorretas = 0;
+        carregarQuestao();
+    };
 
     function proximaQuestao(e) {
-        if (e.target.getAttribute("data-correct") === true) {
+        if (e.target.getAttribute("data-correct") === "true") {
             questoesCorretas++;
         }
 
-        if (indice < listaQuestoes.length - 1) {
+        if (indice < questoes.length - 1) {
             indice++;
             carregarQuestao();
         } else {
@@ -202,21 +140,178 @@
     }
 
     function finalizar() {
-        textFinish.innerHTML = `Você acertou ${questoesCorretas} de ${listaQuestoes.length}`;
-        content.style.display = "none";
-        contentFinish.style.display = "flex";
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        // textoFinalizar.innerHTML = `você acertou ${questoesCorretas} de ${questoes.length}.
+        // Sua pontuação foi ${pontuacao}`;
+        conteudo.style.display = "none";
+        conteudoFinalizar.style.display = "flex";
+
+        var pontuacao = questoesCorretas * 2;
+
+        console.log("Antes de entrar no fetch de consultar");
+
+        fetch(`/quiz/consultar/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            console.log("ESTOU NO THEN DO consultar()!")
+
+            if (response.ok) {
+                console.log("Response: ", response);
+
+                if (response.status == 200) {
+
+                    response.json().then(function (resposta) {
+                        console.log("Resposta: ", JSON.stringify(resposta));
+                        var resultado = resposta;
+
+
+                        console.log("Respondeu o quiz.");
+
+                        if (pontuacao == resultado[0].pontuacao) {
+                            fetch(`/quiz/editar/${idUsuario}`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    acertos: questoesCorretas,
+                                    pontuacao: pontuacao,
+                                    idUsuario: idUsuario
+                                })
+
+                            }).then(function (resposta) {
+
+                                if (resposta.ok) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'POST',
+                                        text: `Quiz finalizado e pontuação igual a anterior. você acertou ${questoesCorretas} de ${questoes.length} questões. Boa!`,
+                                        confirmButtonColor: '#1e26fd'
+                                    })
+                                } else if (resposta.status == 404) {
+                                    window.alert("Deu 404!");
+                                } else {
+                                    throw ("Houve um erro ao tentar editar o quiz! Código da resposta: " + resposta.status);
+                                }
+                            }).catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
+                        }
+
+                        if (pontuacao > resultado[0].pontuacao) {
+
+                            fetch(`/quiz/editar/${idUsuario}`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    acertos: questoesCorretas,
+                                    pontuacao: pontuacao,
+                                    idUsuario: idUsuario
+                                })
+
+                            }).then(function (resposta) {
+
+                                if (resposta.ok) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'POST',
+                                        text: `Quiz finalizado e pontuação melhor que a anterior. você acertou ${questoesCorretas} de ${questoes.length} questões. Boa!`,
+                                        confirmButtonColor: '#1e26fd'
+                                    })
+                                } else if (resposta.status == 404) {
+                                    window.alert("Deu 404!");
+                                } else {
+                                    throw ("Houve um erro ao tentar editar o quiz! Código da resposta: " + resposta.status);
+                                }
+                            }).catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'POST',
+                                text: `Quiz finalizado, mas pontuação abaixo da anterior. Você acertou ${questoesCorretas} de ${questoes.length} questões. Pra cima!`,
+                                confirmButtonColor: '#1e26fd'
+                            })
+                        }
+
+                    });
+
+                } else if (response.status == 204) {
+                    console.log("Não respondeu o quiz.");
+                    fetch(`/quiz/publicar/${idUsuario}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            acertos: questoesCorretas,
+                            pontuacao: pontuacao,
+                            idUsuario: idUsuario
+                        })
+                    }).then(function (resposta) {
+
+                        if (resposta.ok) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'POST',
+                                text: `Quiz finalizado! Você acertou ${questoesCorretas} de ${questoes.length} questões.`,
+                                confirmButtonColor: '#1e26fd'
+                            })
+                        } else if (resposta.status == 404) {
+                            window.alert("Deu 404!");
+                        } else {
+                            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                        }
+                    }).catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+
+                } else {
+                    console.log("Erro ao consultar no banco se o usuário já respondeu o quiz ou não.");
+                }
+
+            } else {
+                console.log("Erro em retornar a response");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+            return false;
+        })
     }
 
-    btnRestart.onclick = () => {
-        content.style.display = "flex";
-        contentFinish.style.display = "none";
 
-        indice = 0;
-        questoesCorretas = 0;
-        carregarQuestao();
+    function carregarQuestao() {
+        spnQtd.innerHTML = `${indice + 1}/${questoes.length}`;
+        var item = questoes[indice];
+        respostas.innerHTML = "";
+        questao.innerHTML = item.questao;
+        var respostasArray = item.respostas;
+        for (var i = 0; i < respostasArray.length; i++) {
+
+            var resposta = respostasArray[i];
+            var div = document.createElement("div");
+
+            div.innerHTML = `
+        <button class="resposta" data-correct="${resposta.correta}">
+            ${resposta.opcao}
+        </button>
+        `;
+
+            respostas.appendChild(div);
+        }
+
+        var elementosResposta = document.querySelectorAll(".resposta")
+        for (var i = 0; i < elementosResposta.length; i++) {
+            var item = elementosResposta[i]
+            item.addEventListener("click", proximaQuestao);
+
+        }
     }
 
     carregarQuestao();
-
 
 </script>

@@ -14,6 +14,7 @@ var avaliacaoRouter = require("./src/routes/avaliacao");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
+var quizRouter = require("./src/routes/quiz");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +27,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avaliacao", avaliacaoRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
+app.use("/quiz", quizRouter);
 app.use("/empresas", empresasRouter);
 
 app.listen(PORTA, function () {

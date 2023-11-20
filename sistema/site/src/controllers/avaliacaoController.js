@@ -120,6 +120,7 @@ function publicar(req, res) {
     }
 }
 
+
 function cadastrarJogador(req, res) {
     var idUsuario = req.params.idUsuario;
     var jogadorEscolhido = req.body.jogadorEscolhido;
@@ -191,6 +192,7 @@ function deletar(req, res) {
             }
         );
 }
+
 
 module.exports = {
     listar,

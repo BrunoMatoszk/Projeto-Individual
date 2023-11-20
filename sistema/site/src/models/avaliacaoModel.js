@@ -36,19 +36,10 @@ WHERE a.descricao LIKE '${texto}';
 function listarPorUsuario(idUsuario) {
     console.log("ACESSEI A AVALIACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
     var instrucao = `
-    SELECT 
-    a.idAvaliacao,
-    a.descricao,
-    a.fkPlayer,
-    u.idUsuario,
-    u.nome,
-    u.sobrenome,
-    u.email,
-    u.senha
-FROM avaliacao a
-    INNER JOIN usuario u
-        ON a.fkPlayer = u.idUsuario
-WHERE u.idUsuario = ${idUsuario};
+    select a.idAvaliacao, a.descricao, u.idUsuario, u.nome, u.sobrenome, u.email, u.senha, a.fkPlayer, 
+    j.nome as NomeJogador 
+    from avaliacao a join jogador j
+    on fkPlayer = idJogador join usuario u on a.fkUser = u.idUsuario where u.idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="atualizarFeed()" onload="validarSessao()">
+<body onload="validarSessao()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -52,7 +52,7 @@
     <main class="main">
         <h1>Avalie a Temporada do seu Jogador</h1>
         <p>
-            Nessa lista irei trazer os melhores jogadores da temporada 22-23. Os critério são: titulos, aparições em
+            Nessa lista irei trazer os melhores jogadores da temporada 22-23. Os critério são: títulos, aparições em
             torneios, colocações em campeonatos e prêmios individuais.
         </p>
 
@@ -134,6 +134,7 @@
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    window.onload = atualizarFeed();
 
 
     var jogadorAvaliado;
@@ -755,7 +756,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'POST',
-                    text: `Post realizado com sucesso pelo usuario de ID: ${idUsuario}!`,
+                    text: `Avaliação realizada com sucesso pelo usuario de ID: ${idUsuario}!`,
                     confirmButtonColor: '#1e26fd'
                 }).then(() => {
                     window.location = "/avaliarJogador.html";
@@ -853,7 +854,6 @@
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
 
-                        // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
                         var spanID = document.createElement("span");
                         var spanNome = document.createElement("span");
@@ -863,36 +863,40 @@
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
 
-
                         spanID.innerHTML = "ID: <b>" + publicacao.idUsuario + "</b>";
                         spanNome.innerHTML = "Nome: <b>" + publicacao.nome + "</b>";
                         spanJogador.innerHTML = "Jogador Avaliado: <b>" + publicacao.NomeJogador + "</b>";
                         spanDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
                         spanID.className = "publicacao-idUsuario";
                         spanNome.className = "publicacao-nome";
                         spanJogador.className = "publicacao-nomeJogador";
                         spanDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAvaliacao;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAvaliacao;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
+                        divButtons.className = "div-buttons";
+                        btnEditar.className = "publicacao-btn-editar";
+                        btnDeletar.className = "publicacao-btn-editar";
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanJogador);
                         divPublicacao.appendChild(spanDescricao);
                         divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
+
+                        // Adiciona os botões apenas se o ID do usuário atual for igual ao ID do usuário da avaliação
+                        if (publicacao.idUsuario == idUsuario) {
+                            btnEditar.innerHTML = "Editar";
+                            btnEditar.id = "btnEditar" + publicacao.idAvaliacao;
+                            btnEditar.setAttribute("onclick", `editar(${publicacao.idAvaliacao})`);
+
+                            btnDeletar.innerHTML = "Deletar";
+                            btnDeletar.id = "btnDeletar" + publicacao.idAvaliacao;
+                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAvaliacao})`);
+
+                            divButtons.appendChild(btnEditar);
+                            divButtons.appendChild(btnDeletar);
+                        }
+
                         feed.appendChild(divPublicacao);
                     }
 
@@ -907,7 +911,5 @@
         });
     }
 
-    // function limparFormulario() {
-    //     document.getElementById("form_postagem").reset();
-    // }
+
 </script>

@@ -47,7 +47,7 @@
     </div>
     <div class="title">Cadastro</div>
     <div class="content">
-      <form action="#" id="form_postagem">
+      <form onsubmit="return false" id="form_postagem">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Nome</span>
@@ -154,7 +154,7 @@
                 "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
               setTimeout(() => {
-                window.location = "login.html";
+                window.location = "/login.html";
               }, "2000");
 
               limparFormulario();

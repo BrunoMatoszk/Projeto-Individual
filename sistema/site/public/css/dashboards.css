@@ -90,6 +90,10 @@ body {
   color: white;
 }
 
+.publicacao-descricao {
+  color: white;
+}
+
 .div-results {
   width: 100%;
 }
@@ -100,6 +104,7 @@ body {
   border: blue 1px solid;
   margin-inline: 1%;
   margin-top: 1%;
+  border-bottom: none;
 }
 
 .div-buttons {

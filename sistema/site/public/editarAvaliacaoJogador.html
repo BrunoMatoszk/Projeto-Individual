@@ -8,6 +8,7 @@
     <title>Editar</title>
     <link rel="stylesheet" href="css/editarAvaliacao.css" />
     <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
@@ -48,7 +49,7 @@
         <h1>Editar avaliação de Jogador</h1>
 
         <div class="T50 Contato" id="Contato">
-            <form>
+            <form onsubmit="return false">
                 <textarea id="textarea_descricao" placeholder="Digite sua avaliação"></textarea>
                 <button class="btn-avaliar" onclick="editar()">Enviar</button>
             </form>
@@ -92,7 +93,12 @@
                     window.location = "/avaliarJogador.html"
                 })
             } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERRO',
+                    text: 'Avaliação não encontrada',
+                    confirmButtonColor: '#1e26fd'
+                })
             } else if (resposta.status == 400) {
                 Swal.fire({
                     icon: 'error',
