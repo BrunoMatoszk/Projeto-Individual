@@ -16,4 +16,8 @@ router.put("/editar/:idUsuario", function (req, res) {
     quizController.editar(req, res);
 });
 
+router.get("/ultimas", function (req, res) {
+    quizController.ranking(req, res);
+});
+
 module.exports = router;

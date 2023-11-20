@@ -68,8 +68,26 @@ function editar(req, res) {
 
 }
 
+function ranking(req, res) {
+
+    quizModel.ranking().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            console.log("Nenhum resultado encontrado!");
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar usuário.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
 module.exports = {
     publicar,
     editar,
-    consultar
+    consultar,
+    ranking
 }

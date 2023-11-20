@@ -132,7 +132,7 @@ body {
 
 /* LOGIN */
 
-.banner .container .card {
+/* .banner .container .card {
   background-color: #e5e5e5;
   height: fit-content;
   width: 400px;
@@ -162,7 +162,7 @@ body {
 
 button {
   cursor: pointer;
-}
+} */
 
 /* FORMULARIO */
 
@@ -188,7 +188,7 @@ button {
   font-size: 20px;
 }
 
-.formulario .tipo_campo {
+/* .formulario .tipo_campo {
   font-size: 20px;
   font-weight: 600 !important;
 }
@@ -218,7 +218,7 @@ input {
   width: 120px;
   align-self: center;
   margin-top: 5px;
-}
+} */
 
 .loading-div {
   width: 50px;
@@ -231,7 +231,7 @@ input {
   width: 50px;
 }
 
-/* PAGINA DOS GRÁFICOS */
+/* PAGINA DOS GRÁFICOS
 
 .janela {
   display: flex;
@@ -256,7 +256,7 @@ input {
   align-items: center;
   border-right: 3px solid #32b9cd;
   background-color: #212124;
-  /* border: 3px solid pink; */
+  /* border: 3px solid pink; 
 }
 
 .dash-right {
@@ -330,9 +330,9 @@ input {
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
-}
+} */
 
-/* pagina extra - simulador */
+/* pagina extra - simulador
 .simulador {
   color: white;
 
@@ -342,7 +342,7 @@ input {
   flex-direction: column
 }
 
-/* Alarme */
+/* Alarme 
 #alerta {
   position: absolute;
   right: 0px;
@@ -398,4 +398,4 @@ input {
   100% {
     transform: rotate(25deg)
   }
-}
+} */

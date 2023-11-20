@@ -110,3 +110,55 @@
     text-align: center;
     padding-top: 7%;
 }
+
+.tabela-ranking {
+    background-color: #ffffffe0;
+    width: 60%;
+    height: 350px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #000000a0;
+    padding: 20px;
+    color: black;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.tabela-ranking .titulos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+
+.tabela-ranking .titulos span {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabela-ranking .infos {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    overflow: scroll;
+}
+
+.tabela-ranking .infos::-webkit-scrollbar {
+    display: none;
+}
+
+.tabela-ranking .infos .nome,
+.acertos,
+.pontuacao,
+.jogador {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}

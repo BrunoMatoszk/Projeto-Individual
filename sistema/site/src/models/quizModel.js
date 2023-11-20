@@ -27,8 +27,25 @@ function editar(novaPontuacao, novaQtdAcertos, fkUsuario) {
     return database.executar(instrucao);
 }
 
+function ranking() {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",);
+    var instrucao = `
+    select 
+    u.nome as 'Usuário',
+    p.acertos 'Acertos',
+    p.pontuacao as 'Pontuação',
+    j.nome as 'Jogador'
+    from pontuacaoquiz as p join usuario as u
+	on fkUsuario = idUsuario
+    join jogador as j on idJogador = fkJogador;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     publicar,
     consultar,
-    editar
+    editar,
+    ranking
 }

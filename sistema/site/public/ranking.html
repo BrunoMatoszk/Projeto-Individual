@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rocket League | Quiz</title>
-    <link rel="stylesheet" href="css/quiz.css" />
+    <link rel="stylesheet" href="css/ranking.css" />
     <script src="js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="assets/icon/rocket-league.svg" type="image/x-icon">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="validarSessao()" onload="carregarQuestao()">
+<body onload="validarSessao()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -23,20 +23,23 @@
                 <div class="menu-title">Bem-Vindo <span id="b_usuario">usuário</span></div>
 
                 <li class="item">
-                    <a href="avaliarJogador.html">Avaliar Jogador</a>
-                </li>
-                <li class="item">
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
-
-                <li class="item">
                     <a href="votarJogador.html">Votar Jogador</a>
                 </li>
                 <li class="item">
-                    <a href="#">Quiz</a>
+                    <a href="avaliarJogador.html">Avaliar Jogador</a>
+                </li>
+
+                <li class="item">
+                    <a href="dashboard.html">Dashboard</a>
                 </li>
                 <li class="item">
-                    <a onclick="limparSessao()" href="index.html">Sair</a>
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <!-- <li class="item">
+                    <a href="ranking.html">Ranking</a>
+                </li> -->
+                <li class="item">
+                    <a onclick="limparSessao()">Sair</a>
                 </li>
             </ul>
         </div>
@@ -49,21 +52,20 @@
     <main class="main">
         <h1>Ranking Rocket League</h1>
         <div class="conteudo ranking">
-            <h2>Ranking - Quiz</h2>
 
             <div id="ranking" class="tabela-ranking">
                 <div class="titulos">
                     <span>Usuário</span>
                     <span>Acertos</span>
                     <span>Pontuação</span>
-                    <span>Time</span>
+                    <span>Jogador</span>
                 </div>
 
                 <div class="infos" id="infos">
                     <div class="nome" id="nome"></div>
                     <div class="acertos" id="acertos"></div>
                     <div class="pontuacao" id="pontuacao"></div>
-                    <div class="time" id="time"></div>
+                    <div class="jogador" id="jogador"></div>
                 </div>
             </div>
         </div>
@@ -74,11 +76,11 @@
 </html>
 
 <script>
-    fetch(`/ranking/ultimas`, { cache: 'no-store' }).then(function (response) {
+
+    fetch(`/quiz/ultimas`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                // resposta.reverse();
 
                 console.log(resposta.Acertos);
 
@@ -87,7 +89,7 @@
                         resposta[i].Usuário,
                         resposta[i].Acertos,
                         resposta[i].Pontuação,
-                        resposta[i].Time
+                        resposta[i].Jogador
                     );
                 }
 
@@ -100,12 +102,12 @@
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-    function montarRanking(nome, acertos, pontuacao, time) {
+    function montarRanking(nome, acertos, pontuacao, jogador) {
 
         document.getElementById("nome").innerHTML += `<span>${nome}</span>`;
         document.getElementById("acertos").innerHTML += `<span>${acertos}</span>`;
         document.getElementById("pontuacao").innerHTML += `<span>${pontuacao}</span>`;
-        document.getElementById("time").innerHTML += `<span>${time}</span>`;
+        document.getElementById("jogador").innerHTML += `<span>${jogador}</span>`;
 
     }
 </script>
