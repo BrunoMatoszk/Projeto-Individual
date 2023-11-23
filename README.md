@@ -1,5 +1,7 @@
 # Projeto-Individual
 Projeto individual do 1 Semestre de ADS na SPTECH - Tema RocketLeague
+
+
 🖥️ Acessando o repositório
 Copie a URL do repositório;
 Vá para o terminal do GitBash, PowerShell ou apenas o Terminal em caso de Linux;
