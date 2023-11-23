@@ -84,35 +84,93 @@
     var questoes =
         [
             {
-                questao: "Quanto é 1 + 2?",
+                questao: "Qual time venceu todos os Regionais da Europa e Major do Spring Split e World Championship na temporada 2022-23 da RLCS?",
                 respostas: [
-                    { opcao: "3", correta: true },
-                    { opcao: "2", correta: false },
-                    { opcao: "4", correta: false },
+                    { opcao: "Team Vitality", correta: true },
+                    { opcao: "Team BDS", correta: false },
+                    { opcao: "Karmine Corp", correta: false },
+                    { opcao: "Rule One", correta: false },
                 ],
             },
             {
-                questao: "Quanto é 5 x 2?",
+                questao: "Qual jogador venceu 5 torneios seguidos desde a sua entrada no profissional na temporada 2022-23 da RLCS?",
                 respostas: [
-                    { opcao: "9", correta: false },
-                    { opcao: "10", correta: true },
-                    { opcao: "11", correta: false },
+                    { opcao: "Zen", correta: true },
+                    { opcao: "Rw9", correta: false },
+                    { opcao: "Vatira", correta: false },
+                    { opcao: "Moonkey Moon", correta: false },
                 ],
             },
             {
-                questao: "Quanto é 10 x 8?",
+                questao: "Qual jogo teve o Overtime de 12 minutos no Spring Major 2022-23?",
                 respostas: [
-                    { opcao: "800", correta: false },
-                    { opcao: "90", correta: false },
-                    { opcao: "80", correta: true },
+                    { opcao: "Karmine Corp x Team Vitality", correta: false },
+                    { opcao: "Team BDS X Faze Clan", correta: false },
+                    { opcao: "Rule One x Team Vitality", correta: true },
+                    { opcao: "Complexity Gaming x Team Liquid", correta: false },
                 ],
             },
             {
-                questao: "Quanto é 7 x 7?",
+                questao: "Qual jogador foi MVP do Worlds Championship 2022-23?",
                 respostas: [
-                    { opcao: "70", correta: false },
-                    { opcao: "56", correta: false },
-                    { opcao: "49", correta: true },
+                    { opcao: "Zen", correta: true },
+                    { opcao: "ApparentlyJack", correta: false },
+                    { opcao: "Firstkiller", correta: false },
+                    { opcao: "Lj", correta: false },
+                ],
+            },
+            {
+                questao: "Qual jogador foi o MVP Sul-americano da temporada 2022-23? ",
+                respostas: [
+                    { opcao: "Yanxnz", correta: false },
+                    { opcao: "Aztromick", correta: false },
+                    { opcao: "Drufinho", correta: true },
+                    { opcao: "Kv1", correta: false },
+                ],
+            },
+            {
+                questao: "Qual foi o melhor time da temporada 2022-23 da RLCS?",
+                respostas: [
+                    { opcao: "Team Vitality", correta: true },
+                    { opcao: "Spacestation Gaming", correta: false },
+                    { opcao: "Moist Esports", correta: false },
+                    { opcao: "Gen.G Mobil 1", correta: false },
+                ],
+            },
+            {
+                questao: "Quem foi o MVP do Spring Major 2022-23?",
+                respostas: [
+                    { opcao: "Zen", correta: true },
+                    { opcao: "Vatira", correta: false },
+                    { opcao: "Seikoo", correta: false },
+                    { opcao: "Rw9", correta: false },
+                ],
+            },
+            {
+                questao: "Qual país teve a maior representatividade de jogadores no Spring Major 2022-23?",
+                respostas: [
+                    { opcao: "França", correta: false },
+                    { opcao: "Estados Unidos", correta: false },
+                    { opcao: "Austrália", correta: false },
+                    { opcao: "Brasil", correta: true },
+                ],
+            },
+            {
+                questao: "Qual foi a colocação dos times da SAM no World Championship 2022-23?",
+                respostas: [
+                    { opcao: "4° Lugar", correta: false },
+                    { opcao: "5° Lugar", correta: false },
+                    { opcao: "Fase de grupos", correta: true },
+                    { opcao: "Não se classificou", correta: false },
+                ],
+            },
+            {
+                questao: "Qual time da SAM pegou top4 no Fall Major 2022-23?",
+                respostas: [
+                    { opcao: "Team Secret", correta: true },
+                    { opcao: "Ninjas in Pyjamas", correta: false },
+                    { opcao: "Furia Esports", correta: false },
+                    { opcao: "Kru Esports", correta: false },
                 ],
             },
         ];
@@ -170,36 +228,6 @@
 
                         console.log("Respondeu o quiz.");
 
-                        if (pontuacao == resultado[0].pontuacao) {
-                            fetch(`/quiz/editar/${idUsuario}`, {
-                                method: "PUT",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify({
-                                    acertos: questoesCorretas,
-                                    pontuacao: pontuacao,
-                                    idUsuario: idUsuario
-                                })
-
-                            }).then(function (resposta) {
-
-                                if (resposta.ok) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'POST',
-                                        text: `Quiz finalizado e pontuação igual a anterior. você acertou ${questoesCorretas} de ${questoes.length} questões. Boa!`,
-                                        confirmButtonColor: '#1e26fd'
-                                    })
-                                } else if (resposta.status == 404) {
-                                    window.alert("Deu 404!");
-                                } else {
-                                    throw ("Houve um erro ao tentar editar o quiz! Código da resposta: " + resposta.status);
-                                }
-                            }).catch(function (resposta) {
-                                console.log(`#ERRO: ${resposta}`);
-                            });
-                        }
 
                         if (pontuacao > resultado[0].pontuacao) {
 
@@ -232,12 +260,34 @@
                                 console.log(`#ERRO: ${resposta}`);
                             });
                         } else {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'POST',
-                                text: `Quiz finalizado, mas pontuação abaixo da anterior. Você acertou ${questoesCorretas} de ${questoes.length} questões. Pra cima!`,
-                                confirmButtonColor: '#1e26fd'
-                            })
+                            fetch(`/quiz/editar/${idUsuario}`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    acertos: questoesCorretas,
+                                    pontuacao: pontuacao,
+                                    idUsuario: idUsuario
+                                })
+
+                            }).then(function (resposta) {
+
+                                if (resposta.ok) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'POST',
+                                        text: `Quiz finalizado, mas pontuação não ultrapassou a anterior. Você acertou ${questoesCorretas} de ${questoes.length} questões. Pra cima!`,
+                                        confirmButtonColor: '#1e26fd'
+                                    })
+                                } else if (resposta.status == 404) {
+                                    window.alert("Deu 404!");
+                                } else {
+                                    throw ("Houve um erro ao tentar editar o quiz! Código da resposta: " + resposta.status);
+                                }
+                            }).catch(function (resposta) {
+                                console.log(`#ERRO: ${resposta}`);
+                            });
                         }
 
                     });
