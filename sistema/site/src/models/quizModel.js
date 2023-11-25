@@ -37,7 +37,7 @@ function ranking() {
     j.nome as 'Jogador'
     from pontuacaoquiz as p join usuario as u
 	on fkUsuario = idUsuario
-    join jogador as j on idJogador = fkJogador;
+    join jogador as j on idJogador = fkJogador order by pontuacao desc;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

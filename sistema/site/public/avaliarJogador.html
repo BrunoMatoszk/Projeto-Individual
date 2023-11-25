@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="validarSessao()">
+<body onload="carregar()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -136,7 +136,11 @@
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    window.onload = atualizarFeed();
+
+    function carregar() {
+        validarSessao(),
+            atualizarFeed()
+    }
 
 
     var jogadorAvaliado;

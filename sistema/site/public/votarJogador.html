@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="atualizarFeed()" onload="validarSessao()">
+<body onload="carregar()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -109,6 +109,11 @@
     sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function carregar() {
+        validarSessao(),
+            atualizarFeed()
+    }
 
     var jogadorVotado = 0;
 
@@ -424,7 +429,7 @@
         jogadorVotado = 4;
     }
 
-    function atleta4() {
+    function atleta5() {
         jogador1.innerHTML = `
         <button onclick="atleta1()">
             <img width="210px" height="210px" src="assets/imgs/zen.jpg" alt="">

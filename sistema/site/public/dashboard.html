@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
-<body onload="validarSessao()">
+<body onload="carregar()">
     <nav class="sidebar">
         <a href="#" class="logo">Rocket League</a>
 
@@ -81,7 +81,13 @@
 
     let proximaAtualizacao;
 
-    window.onload = obterDadosGrafico(), obterGraficoJogador();
+    function carregar() {
+        validarSessao(),
+            obterDadosGrafico(),
+            obterGraficoJogador();
+    }
+
+
 
     function obterDadosGrafico(idAvaliacao) {
 
