@@ -6,16 +6,12 @@ function buscarUltimasMedidas(idUsuario, limite_linhas) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
-        join jogador ON fkPlayer = idJogador group by jogador.nome 
-        order by TotalJogador desc;
+        select * from totalAvaliacoesJogador;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
-        join jogador ON fkPlayer = idJogador group by jogador.nome 
-        order by TotalJogador desc;
+        select * from totalAvaliacoesJogador;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -32,16 +28,12 @@ function buscarMedidasEmTempoReal(idUsuario) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
-        join jogador ON fkPlayer = idJogador group by jogador.nome 
-        order by TotalJogador desc;
+        select * from totalAvaliacoesJogador;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, COUNT(fkPlayer) as TotalJogador from avaliacao 
-        join jogador ON fkPlayer = idJogador group by jogador.nome 
-        order by TotalJogador desc;
+        select * from totalAvaliacoesJogador;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -58,16 +50,12 @@ function jogador(idUsuario) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, count(fkJogador) as TotalVotos from usuario join jogador
-        on fkJogador = idJogador
-            group by jogador.nome order by TotalVotos desc;
+        select * from totalVotosJogador;
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        select jogador.nome as NomeJogador, count(fkJogador) as TotalVotos from usuario join jogador
-        on fkJogador = idJogador
-            group by jogador.nome order by TotalVotos desc;
+        select * from totalVotosJogador;
         `;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
