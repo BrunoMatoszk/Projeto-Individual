@@ -73,10 +73,6 @@
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function listarInfosDeUm() {
-        console.log("Criar função de trazer informações de post escolhido");
-    }
-
     function editar() {
         fetch(`/avaliacao/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",

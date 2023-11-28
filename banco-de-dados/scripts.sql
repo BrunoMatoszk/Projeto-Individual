@@ -69,4 +69,5 @@ SELECT
 	on fkUsuario = idUsuario
     join jogador as j on idJogador = fkJogador order by pontuacao desc; -- ranking do quiz
             
+            select * from jogador;
             

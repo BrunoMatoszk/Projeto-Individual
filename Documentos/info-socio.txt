@@ -9,6 +9,7 @@ Respeito, Apoio, União, Trabalho em equipe, Igualdade, Liberdade, Participaçã
 ▪ Qual foi a maior dificuldade?
 Definir como eu iria abordar esse tema em meu site e estilização pelo css
 ▪ Qual foi a maior superação na realização desse desafio?
-
+estilização e back-end api
 ▪ Há alguém que deva receber a sua gratidão por você ter conseguido chegar ao
 resultado final?
+Professores, meus colegas, monitores

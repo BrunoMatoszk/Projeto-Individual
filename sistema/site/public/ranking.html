@@ -85,7 +85,7 @@
                 console.log(resposta.Acertos);
 
                 for (i = 0; i < resposta.length; i++) {
-                    montarRanking(
+                    rankingQuiz(
                         resposta[i].Usuário,
                         resposta[i].Acertos,
                         resposta[i].Pontuação,
@@ -102,7 +102,7 @@
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-    function montarRanking(nome, acertos, pontuacao, jogador) {
+    function rankingQuiz(nome, acertos, pontuacao, jogador) {
 
         document.getElementById("nome").innerHTML += `<span>${nome}</span>`;
         document.getElementById("acertos").innerHTML += `<span>${acertos}</span>`;
