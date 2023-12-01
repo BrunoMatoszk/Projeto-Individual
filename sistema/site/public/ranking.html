@@ -76,13 +76,15 @@
 </html>
 
 <script>
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarClose = document.querySelector("#sidebar-close");
+
+    sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 
     fetch(`/quiz/ultimas`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                console.log(resposta.Acertos);
 
                 for (i = 0; i < resposta.length; i++) {
                     rankingQuiz(
